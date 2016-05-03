@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0">
+        <title>Document</title>
+        <script src="js/angular.min.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body>
+
+        <div ng-controller="MainController">
+            <!-- data binding -->
+            {{ val }}
+            <button type="button" name="button" ng-click="inc()">Click me</button>
+            <h2 ng-show="even">even</h2>
+            <h2 ng-hide="even">odd</h2>
+
+            <!-- ng repeat -->
+            <div ng-repeat="element in myarr track by $index">
+                {{element}}
+                <span ng-show='$first'>first</span>
+                <span ng-show='$middle'>middle</span>
+                <span ng-show='$last'>last</span>
+                <span ng-show='$odd'>odd</span>
+                <span ng-show='$even'>even</span>
+            </div>
+
+            <!-- ng model -->
+            <input ng-model="myData">
+            <h1>{{myData}}</h1>
+
+            <!-- $watch -->
+            <div>
+              <p>{{num}}</p>
+              <p>{{nums}}</p>
+              <p><button ng-click='increment()'>Add</button></p>
+              <p><button ng-click='breakit()'>Break it</button></p>
+            </div>
+
+            <!-- $filter -->
+            <!-- built in -->
+            <input ng-model="myfilter.age"></input>
+            <div ng-repeat="item in mydata.arr | filter:myfilter | orderBy: 'name'">
+              {{item}}
+            </div>
+
+            <!-- custom $filter to string -->
+            <div>
+              <input ng-model="testvalue">
+              {{testvalue | charlimited:2}}
+            </div>
+
+            <!-- custom $filter to object-->
+            <input ng-model='mydata.number'>
+            <div ng-repeat="osoba in osoby.arr | candrink:mydata.number">
+              {{osoba}}
+            </div>
+
+        </div>
+        <!-- end of controller -->
+    </body>
+</html>
